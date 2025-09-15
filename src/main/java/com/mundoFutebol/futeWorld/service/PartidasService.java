@@ -17,7 +17,6 @@ public class PartidasService {
     @Autowired
     private TimeRepository timeRepository;
 
-
     public Partidas salvarPartidas(PartidasDTO partidasDTO) {
         Times time1 = timeRepository.findById(partidasDTO.time1Id())
                 .orElseThrow(() -> new RuntimeException("Time A não encontrado"));
@@ -34,12 +33,6 @@ public class PartidasService {
 
         return partidasRepository.save(partida);
     }
-
-
-    public PartidasService(PartidasRepository partidasRepository) {
-        this.partidasRepository = partidasRepository;
-    }
-
     public List<Partidas> listarJogos() {
         return partidasRepository.findAll();
     }

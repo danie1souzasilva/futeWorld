@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface TimeRepository extends JpaRepository<Times, Long> {
     List<Times> findByPaisIgnoreCase(String pais);
-    List<Times> findByNomeIgnoreCase(String name);}
+    List<Times> findByNomeIgnoreCase(String nome);}
 
 

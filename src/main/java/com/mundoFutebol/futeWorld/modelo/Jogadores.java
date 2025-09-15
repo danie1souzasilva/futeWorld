@@ -1,8 +1,10 @@
 package com.mundoFutebol.futeWorld.modelo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity(name = "Jogadores")
+@Data
 public class Jogadores {
 
     @Id
@@ -20,22 +22,6 @@ public class Jogadores {
         this.nome = nome;
         this.posicao = posicao;
         this.idade = idade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Posicao getPosicao() {
-        return posicao;
-    }
-
-    public Integer getIdade() {
-        return idade;
     }
     @ManyToOne
     private Times times;
