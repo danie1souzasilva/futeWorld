@@ -5,15 +5,13 @@ import com.mundoFutebol.futeWorld.modelo.Jogadores;
 import com.mundoFutebol.futeWorld.repository.JogadoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class JogadoresService {
     @Autowired
     private JogadoresRepository jogadoresRepository;
 
-    public JogadoresService(JogadoresRepository jogadoresRepository) {
-        this.jogadoresRepository = jogadoresRepository;
-    }
     public Jogadores salvarJogador(JogadoresDTO jogadoresDTO){
         Jogadores jogador = new Jogadores();
         jogador.setNome(jogadoresDTO.nome());
@@ -24,4 +22,13 @@ public class JogadoresService {
 
         return jogadoresRepository.save(jogador);
     }
+    public List<JogadoresDTO> listarJogadores() {
+        return jogadoresRepository.findAll().stream()
+                .map(j -> new JogadoresDTO(j.getId(), j.getNome(), j.getPosicao(), j.getIdade(), j.getTimes()))
+                .toList();
+    }
+    public void deletar(){
+        jogadoresRepository.deleteAll();
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.mundoFutebol.futeWorld.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,5 +25,6 @@ public class Jogadores {
         this.idade = idade;
     }
     @ManyToOne
+    @JsonBackReference
     private Times times;
 }
