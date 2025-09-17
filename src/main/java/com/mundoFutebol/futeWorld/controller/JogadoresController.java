@@ -1,9 +1,9 @@
 package com.mundoFutebol.futeWorld.controller;
 
+import com.mundoFutebol.futeWorld.dto.JogadorDTO;
 import com.mundoFutebol.futeWorld.dto.JogadoresDTO;
 import com.mundoFutebol.futeWorld.modelo.Jogadores;
 import com.mundoFutebol.futeWorld.modelo.Posicao;
-import com.mundoFutebol.futeWorld.modelo.Times;
 import com.mundoFutebol.futeWorld.repository.JogadoresRepository;
 import com.mundoFutebol.futeWorld.service.JogadoresService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/jogadores")
@@ -35,25 +38,21 @@ public class JogadoresController {
         return ResponseEntity.ok(jogadoresDTO1);
     }
     @GetMapping
-    public List<JogadoresDTO> mostrarJogadores(){
-        return jogadoresService.listarJogadores();
+    public Stream<Object> mostrarJogadores(){
+        return jogadoresService.listarJogadores().stream().map(j ->new JogadorDTO(j.nome(), j.posicao(), j.idade()));
     }
     @GetMapping("/buscarPorNome/{nome}")
-    public List<Jogadores> buscarPorTime(@PathVariable String nome){
-        return jogadoresRepository.findByNomeIgnoreCase(nome);
+    public List<Jogadores> buscarPorTime(@PathVariable String nome){return jogadoresRepository.findByNomeIgnoreCase(nome);
     }
     @GetMapping("/posicao/{posicao}")
-    public List<Jogadores> buscarPosicao(@PathVariable Posicao posicao){
-        return jogadoresRepository.findByPosicao(posicao);
+    public List<Jogadores> buscarPosicao(@PathVariable Posicao posicao){return jogadoresRepository.findByPosicao(posicao);
     }
     @GetMapping("/id/{id}")
-    public Optional<Jogadores> buscarId(@PathVariable long id){
-        return jogadoresRepository.findById(id);
+    public Optional<Jogadores> buscarId(@PathVariable long id){return jogadoresRepository.findById(id);
     }
 
     @DeleteMapping
-    public void deletarJogadores(){
-        jogadoresService.deletar();
+    public void deletarJogadores(){jogadoresService.deletar();
     }
 
 }

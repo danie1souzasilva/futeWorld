@@ -25,8 +25,6 @@ public class TimesController {
     public Times salvarTime(@RequestBody TimesDTO timesDTO) {
         return timesService.salvarTimes(timesDTO);
     }
-
-
     @GetMapping("/nomeTimes")
     public List<Times>listarTimes(){
         return timesService.listarTimes();

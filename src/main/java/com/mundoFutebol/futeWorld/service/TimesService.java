@@ -20,6 +20,7 @@ public class TimesService {
     }
     public Times salvarTimes(TimesDTO timesDTO){
         List<Times> times = new ArrayList<>();
+
         Times novoTime = new Times();
         novoTime.setNome(timesDTO.nome());
         novoTime.setPais(timesDTO.pais());
