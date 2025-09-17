@@ -6,6 +6,7 @@ import com.mundoFutebol.futeWorld.repository.PartidasRepository;
 import com.mundoFutebol.futeWorld.service.PartidasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +37,6 @@ public class PartidaController {
                 partidaSalva.getGolsTime1(),
                 partidaSalva.getGolsTime2()
         );
-
         return ResponseEntity.ok(resposta);
     }
     @DeleteMapping

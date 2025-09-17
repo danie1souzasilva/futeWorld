@@ -23,12 +23,9 @@ public class JogadoresService {
         return jogadoresRepository.save(jogador);
     }
     public List<JogadoresDTO> listarJogadores() {
-        return jogadoresRepository.findAll().stream()
-                .map(j -> new JogadoresDTO(j.getId(), j.getNome(), j.getPosicao(), j.getIdade(), j.getTimes()))
-                .toList();
+        return jogadoresRepository.findAll().stream().map(j -> new JogadoresDTO(j.getId(), j.getNome(), j.getPosicao(), j.getIdade(), j.getTimes())).toList();
     }
-    public void deletar(){
-        jogadoresRepository.deleteAll();
+    public void deletar(){jogadoresRepository.deleteAll();
     }
 
 }

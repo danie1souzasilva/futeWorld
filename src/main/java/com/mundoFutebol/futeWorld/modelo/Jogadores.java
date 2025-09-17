@@ -1,6 +1,7 @@
 package com.mundoFutebol.futeWorld.modelo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ public class Jogadores {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     public Long id;
     public String nome;
     public Posicao posicao;
@@ -17,12 +19,7 @@ public class Jogadores {
 
     public Jogadores() {
     }
-
-    public Jogadores(Long id, String nome, Posicao posicao, Integer idade) {
-        this.id = id;
-        this.nome = nome;
-        this.posicao = posicao;
-        this.idade = idade;
+    public Jogadores(Long id, String nome, Posicao posicao, Integer idade) {this.id = id;this.nome = nome;this.posicao = posicao;this.idade = idade;
     }
     @ManyToOne
     @JsonBackReference

@@ -1,5 +1,6 @@
 package com.mundoFutebol.futeWorld.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,8 +12,9 @@ import java.time.LocalDate;
 public class Partidas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     public Long id;
-
+    @JsonIgnore
     private LocalDate data;
     private Integer golsTime1;
     private Integer golsTime2;
@@ -20,12 +22,7 @@ public class Partidas {
     public Partidas() {
     }
     public Partidas(Long id, LocalDate data, Integer golsTime1, Integer golsTime2, Times time1, Times time2) {
-        this.id = id;
-        this.data = data;
-        this.golsTime1 = golsTime1;
-        this.golsTime2 = golsTime2;
-        this.time1 = time1;
-        this.time2 = time2;
+        this.id = id; this.data = data; this.golsTime1 = golsTime1; this.golsTime2 = golsTime2; this.time1 = time1; this.time2 = time2;
     }
     @ManyToOne
     @JoinColumn(name = "time1_id")
@@ -34,6 +31,5 @@ public class Partidas {
     @ManyToOne
     @JoinColumn(name = "time2_id")
     private Times time2;
-
 
 }

@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
-
 @RestController
 @RequestMapping("/jogadores")
 public class JogadoresController {
@@ -38,11 +36,10 @@ public class JogadoresController {
         return ResponseEntity.ok(jogadoresDTO1);
     }
     @GetMapping
-    public Stream<Object> mostrarJogadores(){
-        return jogadoresService.listarJogadores().stream().map(j ->new JogadorDTO(j.nome(), j.posicao(), j.idade()));
+    public Stream<Object> mostrarJogadores(){return jogadoresService.listarJogadores().stream().map(j ->new JogadorDTO(j.nome(), j.posicao(), j.idade()));
     }
     @GetMapping("/buscarPorNome/{nome}")
-    public List<Jogadores> buscarPorTime(@PathVariable String nome){return jogadoresRepository.findByNomeIgnoreCase(nome);
+    public List<Jogadores> buscarPorNome(@PathVariable String nome){return jogadoresRepository.findByNomeIgnoreCase(nome);
     }
     @GetMapping("/posicao/{posicao}")
     public List<Jogadores> buscarPosicao(@PathVariable Posicao posicao){return jogadoresRepository.findByPosicao(posicao);
@@ -50,7 +47,6 @@ public class JogadoresController {
     @GetMapping("/id/{id}")
     public Optional<Jogadores> buscarId(@PathVariable long id){return jogadoresRepository.findById(id);
     }
-
     @DeleteMapping
     public void deletarJogadores(){jogadoresService.deletar();
     }

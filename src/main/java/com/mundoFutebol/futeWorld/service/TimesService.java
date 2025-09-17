@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TimesService {
     @Autowired
     private TimeRepository timeRepository;
 
-    public TimesService(TimeRepository timeRepository) {
-        this.timeRepository = timeRepository;
+    public TimesService(TimeRepository timeRepository) {this.timeRepository = timeRepository;
     }
     public Times salvarTimes(TimesDTO timesDTO){
         List<Times> times = new ArrayList<>();
@@ -27,10 +27,7 @@ public class TimesService {
         novoTime.setId(timesDTO.id());
         times.add(novoTime);
         return  timeRepository.save(novoTime);
-
     }
-
-    public List<Times> listarTimes() {
-        return timeRepository.findAll();
+    public List<Times> listarTimes() {return timeRepository.findAll();
     }
 }
